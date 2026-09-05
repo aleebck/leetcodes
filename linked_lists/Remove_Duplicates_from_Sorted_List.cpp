@@ -1,9 +1,4 @@
-#include <vector>
-#include <unordered_map>
-#include <stack>
 using namespace std;
-
-
 
 struct ListNode {
     int val;
@@ -12,19 +7,21 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
-        int k = 1;
-        for(int i = 1; i<nums.size(); i++)
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* curr = head;
+        while(curr->next)
         {
-            if(nums[i] != nums[k-1])
+            if(curr->val == curr->next->val)
             {
-                nums[k] = nums[i];
-                k++;
+                curr->next = curr->next->next;
+            }
+            else
+            {
+                curr = curr->next;
             }
         }
-        return k;
+        return head;
     }
 };
